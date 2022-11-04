@@ -2,6 +2,10 @@ from __future__ import print_function
 from __future__ import division
 import cv2 as cv
 
+
+comp_method = input("Qual metodo de comparação deseja utilizar \n[1] - HISTCMP_CORREL \n[2] - HISTCMP_CHISQR")
+
+
 src_base = cv.imread('img1.png')
 hsv_base = cv.cvtColor(src_base, cv.COLOR_BGR2GRAY)
 
