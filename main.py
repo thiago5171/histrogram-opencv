@@ -33,17 +33,18 @@ success, image = vidcap.read()
 count = 0
 while success:
     hsv_frame = cv.cvtColor(image, cv.COLOR_BGR2HSV)
+
     hist_frame = cv.calcHist([hsv_frame], channels, None, histSize, ranges, accumulate=False)
     cv.normalize(hist_frame, hist_frame, alpha=0, beta=1, norm_type=cv.NORM_MINMAX)
     comp1 = cv.compareHist(hist_base, hist_frame, cv.HISTCMP_CORREL)
     comp2 = cv.compareHist(hist_base, hist_frame, cv.HISTCMP_INTERSECT)
-    print("comp1:", comp1, "comp2", comp2)
+    print("comp1:  ", comp1, " comp2 : ", comp2, "  cont",count)
     success, image = vidcap.read()
-    if count ==500 :
+    if count == 873:
         a = image
-
     count += 1
 
-# cv.imshow('result', a)
-# cv.waitKey()
+cv.imshow('result', a)
+cv.imshow('original', src_base)
+cv.waitKey()
 
